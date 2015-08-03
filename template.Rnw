@@ -1,0 +1,208 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Template Thesis DGH UW v3.0
+%%
+%% Vincent Labatut 04/2015
+%% Grégoire Lurton 07/2015
+%%
+%% v1   - 10/2014 : forme de rapport très différente
+%% v2   - 02/2015 : modèle complètement refait
+%% v2.1 - 03/2015 : définition de la page de titre
+%% v2.2 - 03/2015 : correction de quelques bugs
+%% v2.3 - 04/2015 : page de titre complétée (date, adresse postale, long titre)
+%% v3.0 - 07/2015 : adaptation de la page de titre pour UW DGH
+%% v3.1 - 07/2015 : inclusion de packages pour equations et test pour compilation knitr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt,final,twoside]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Loading Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[francais,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage[french]{varioref}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage[numbers]{natbib}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath,amsthm} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paper's Information -- TO TWEAK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TITLE
+\newcommand{\reporttitle}{Whatever this doc is about}    
+
+%AUTHORS
+\newcommand{\reportauthors}{Grégoire Lurton} 
+
+%PROGRAM
+\newcommand{\program}{PhD in Global Health}
+
+%TRACK
+\newcommand{\track}{Metrics Track}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Formatting stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\headheight}{13.6pt} % due to a warning
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+% Espace entre les paragraphes
+
+% Headers and Footers
+\pagestyle{fancy}
+\fancyhf{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\cfoot{\thepage} 
+\fancyhead[L]{\reporttitle}
+\fancyhead[R]{\rightmark}
+
+%%%% Define custom colors
+\definecolor{grisclair}{rgb}{0.7,0.7,0.7}
+\definecolor{grisfonce}{rgb}{0.5,0.5,0.5}
+\definecolor{vert}{RGB}{74,171,67}
+
+%%% PDF Metadatas
+\hypersetup{
+    pdftitle={\reporttitle},
+    pdfauthor={\reportauthors},
+    pdfsubject={\reporttitle},
+    bookmarksnumbered=true,bookmarksopen=true,
+	unicode=true,colorlinks=true,linktoc=all,
+	linkcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,
+	pdfstartview=FitH
+}
+
+%%% Font  - Get sans serif
+\renewcommand{\familydefault}{\sfdefault}
+\fontfamily{garamond}
+
+% Get Bulleted Lists Working
+\renewcommand{\FrenchLabelItem}{\textbullet}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Title Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection  
+\begin{titlepage}
+	\begin{tikzpicture}[remember picture,overlay]
+		\node at (current page.south west)
+			{	
+            \begin{tikzpicture}[remember picture,overlay]
+ 				\pgftext[x=0cm,y=25.37cm,bottom,left]{\includegraphics[width=21cm]{images/dgh_banner.png}};
+ 				\pgftext[x=1.1cm,y=24cm,bottom,left]{\fontsize{20}{20}{\textbf{\program}}};
+ 				\pgftext[x=1.1cm,y=23.2cm,bottom,left]{\fontsize{18}{18}{\textbf{\textcolor{grisfonce}\track}}};
+ 				\pgftext[x=10.5cm,y=16.5cm,bottom,center]{\fontsize{30}{30}{\textbf{\reporttitle}}};
+ 				\pgftext[x=10.5cm,y=15.5cm,bottom,center]{\scalebox{0.77}[1]{\fontsize{20}{20}{\fontfamily{phv}\selectfont{}\textcolor{grisfonce}{\reportauthors}}}};
+ 				\pgftext[x=5.5cm,y=13.1cm,bottom,left]{\scalebox{0.6}[1]{\fontsize{18}{18}{\fontfamily{phv}\selectfont{}\textbf{\today}}}};
+ 				\pgftext[x=1.1cm,y=1.8cm,bottom,left]{\includegraphics[width=6cm]{images/ihme_logo.png}};
+                \pgftext[x=17cm,y=1.8cm,bottom,left]{\includegraphics[width=3cm]{images/hai_logo.png}};
+                \fill[fill=grisclair] (21cm,1cm) rectangle(0cm,0cm);
+	\end{tikzpicture}
+				};
+			\end{tikzpicture}     
+           
+\end{titlepage}
+
+%% Get the page after title empty
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+\newpage\null\thispagestyle{empty}\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%    	FRONT MATTER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{plain}
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% Table des matières
+\cleardoublepage 
+% Dans le cas du recto verso, ajoute une page blanche si besoin
+\phantomsection
+\addcontentsline{toc}{section}{Table of Content}
+\tableofcontents
+\thispagestyle{fancy}
+	
+% Justification moins stricte : des mots ne dépasseront pas des paragraphes
+\sloppy
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% 	MAIN MATTER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Set page numbering right
+\cleardoublepage
+\pagenumbering{arabic} 
+\setcounter{page}{1}
+
+%% And Now get Writing !
+\section{Introduction}
+
+It is quite easy to make hyperlinks in  \href{http://fr.wikipedia.org/wiki/LaTeX}{\LaTeX} and to manage the bibliogrpahy \cite{LaTeXProject2010, Wikipedia2011a}.
+	
+And we can also embed our R code inside the doc for easier use. 
+
+\section{Embed R code ?!!}
+
+\subsection{Basic test}
+
+<<Code1, tidy.opts=list(keep.blank.line=FALSE, width.cutoff=45)>>=
+aa <- rnorm(100000)
+mean(aa)
+@
+
+
+and we can then get the results inside the text with \texttt{\textbackslash{}Sexpr\{mean(aa)\}} which gives us \Sexpr{mean(aa)} 
+
+And it also handles nicely integration of plots in Latex with label for future reference in the text. Exemple with figure \ref{fig_histoCode2}. Still have to manage the position of figures (in the header of code chunks).
+
+<<Code2, tidy.opts=list(keep.blank.line=FALSE, width.cutoff=45) , fig.cap='A nice caption and label for future reference' , fig.lp='fig_histo'>>=
+aa <- rnorm(100000)
+hist(aa)
+mean(aa)
+@
+
+Useful to keep in mind :
+
+\textbr{fig.lp}: ('fig:'; character) label prefix for the figure label to be used in \texttt{\textbacklash label\{\}}; the actual label is made by concatenating this prefix and the chunk label, e.g. the figure label for \texttt{<<foo-plot>>=} will be \texttt{fig:foo-plot} by default
+
+
+\subsection{Trying out equations}
+ 
+We first write equation (7.52) and use the approximation provided in the exercise :
+
+\begin{align} 
+GCV(\hat{f}) & = \frac{1}{N}\sum_{i = 1}^{N}\left[\frac{y_i - \hat{f}(x_i)}{1 - S_{ii}/N}\right]^2 \\
+& \approx \frac{1}{N}\sum_{i = 1}^{N}[y_i - \hat{f}(x_i)]^2\\
+&= \frac{1}{N}\sum_{i = 1}^{N}[y_i - \hat{f}(x_i)]^2 + 2 \frac{1}{N}\sum_{i = 1}^{N}[y_i - \hat{f}(x_i)]^2\frac{S_{ii}}{N}
+\end{align}
+
+Using $ \frac{1}{N}\sum_{i = 1}^{N}[y_i - \hat{f}(x_i)]^2$ as an approximation of $ \sigma^2$ and $S_{ii} = d$, we can then rewrite this as \begin{align} 
+\frac{1}{N}\sum_{i = 1}^{N}[y_i - \hat{f}(x_i)]^2 + 2 \frac{1}{N}\sum_{i = 1}^{N}[y_i - \hat{f}(x_i)]^2\frac{S_{ii}}{N} &\approx \sigma^2 + 2\sigma^2 \frac{d}{N}
+\end{align} 
+
+This is equivalent to equation (7.26), only difference being how we estimate $\sigma^2$. 
+
+ 
+  
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 			BIBLIOGRAPHY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\phantomsection\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plainnat}
+\bibliography{bibliographie}
+
+
+\end{document}
+
