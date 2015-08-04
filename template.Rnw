@@ -30,7 +30,9 @@
 \usepackage[table]{xcolor}
 \usepackage{tikz}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{amsmath,amsthm} 
+\usepackage{eulervm}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Paper's Information -- TO TWEAK
@@ -83,10 +85,9 @@
 
 %%% Font  - Get sans serif
 \renewcommand{\familydefault}{\sfdefault}
-\fontfamily{garamond}
 
 % Get Bulleted Lists Working
-\renewcommand{\FrenchLabelItem}{\textbullet}
+%\renewcommand{\FrenchLabelItem}{\textbullet}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
